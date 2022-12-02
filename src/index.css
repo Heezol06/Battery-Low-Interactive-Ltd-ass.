@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.file-wrapper > div {
+    border-radius: 10px !important;
+  display: block;
+  background-color: rgb(249, 120, 120);
+  padding: 12px 20px;
+}
+
+.file-wrapper > div  button {
+  width: auto !important;
+  padding: 0 !important;
+}
+.file-wrapper > div  > div{
+  width: 44% !important;
+  height: 42px !important;
+  padding: 0 !important;
+  margin: 0 4px;
+}

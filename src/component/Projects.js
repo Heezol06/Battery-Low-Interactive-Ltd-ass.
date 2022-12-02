@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useRef,CSSProperties } from 'react';
+import { useCSVReader } from 'react-papaparse';
+import CSVChart from './CSVChart';
+
+
+
+
+
 
 const Projects = () => {
+    const { CSVReader } = useCSVReader();
+
+
     return (
         <div class="hero min-h-screen text-white">
             <div class="hero-content flex-col lg:flex-row-reverse">
@@ -17,12 +27,19 @@ const Projects = () => {
                 <label class="label">
                   <span class="label-text">File Upload</span>
                 </label>
-                <input
-                  type="file"
-                  placeholder="File Upload"
-                  style={{backgroundColor:"#ae0f23"}}
-                />
+                <div className='file-wrapper'>
+                <CSVChart></CSVChart>
+                </div>
               </div>
+                {/* <CSVReader
+                 ref={buttonRef}
+                 onFileLoad={handleOnFileLoad}
+                onError={handleOnError}
+                // onClick
+                onRemoveFile={handleOnRemove}
+                >
+
+                </CSVReader> */}
               <div class="form-control">
                 <label class="label">
                   <span class="label-text">max_X</span>
