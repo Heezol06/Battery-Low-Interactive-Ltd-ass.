@@ -26,13 +26,14 @@ const styles = {
   },
 };
 
-const CSVConvert = ({setXMax,setXMin,setYMax,setYMin,setZMax,setZMin}) => {
+const CSVConvert = ({setXMax,setXMin,setYMax,setYMin,setZMax,setZMin, setCSVData}) => {
   const { CSVReader } = useCSVReader();
   
   
   return (
     <CSVReader
       onUploadAccepted={(results) => {
+        setCSVData(results.data)
         const arr = results.data;
         
         let x = [];

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-const CompanyPlanning = () => {
+const CompanyPlanning = ({setPlanning}) => {
   const { register, handleSubmit } = useForm();
+  
   const onSubmit = (data) =>{
-    
+    setPlanning(data)
     }
   return (
     <div>

@@ -6,6 +6,8 @@ import Results from "./Results";
 
 const ProjectDetailsForm = () => {
   const [page, setPage] = useState(0);
+  const [planning, setPlanning] = useState({})
+  const [CSVData, setCSVData] = useState([])
   const [formData, setFormData] = useState({
     ProjectName: "",
     ProjectDescription: "",
@@ -13,14 +15,14 @@ const ProjectDetailsForm = () => {
     Contractor: "",
   });
 
-  const FormTitles = ["Sign Up", "Personal Info", "Other"];
+  const FormTitles = ["Company Planning", "CSV Info", "Results"];
   const PageDisplay = () => {
     if (page === 0) {
-      return <CompanyPlanning formData={formData} setFormData={setFormData} />;
+      return <CompanyPlanning setPlanning={setPlanning} formData={formData} setFormData={setFormData} />;
     } else if (page === 1) {
-      return <Projects formData={formData} setFormData={setFormData} />;
+      return <Projects setCSVData={setCSVData} planning={planning} formData={formData} setFormData={setFormData} />;
     } else if (page === 2) {
-      return <Results formData={formData} setFormData={setFormData} />;
+      return <Results CSVData={CSVData} formData={formData} setFormData={setFormData} />;
     }
   };
 
@@ -47,7 +49,6 @@ const ProjectDetailsForm = () => {
           onClick={() => {
             if (page === FormTitles.length - 1) {
               alert("FORM SUBMITTED");
-              // console.log(formData);
             } else {
               setPage((currPage) => currPage + 1);
             }

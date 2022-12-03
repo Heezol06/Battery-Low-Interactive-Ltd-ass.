@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import { useCSVReader } from "react-papaparse";
 import CSVConvert from "./CSVConvert";
 
-const Projects = () => {
-  // console.log(xMin ,xMax, yMin,yMax,zMin,zMax)
-  const [items, setItems] = useState([]);
+const Projects = ({ planning, setCSVData }) => {
   const [xMin, setXMin] = useState();
   const [xMax, setXMax] = useState();
   const [yMin, setYMin] = useState();
   const [yMax, setYMax] = useState();
   const [zMin, setZMin] = useState();
   const [zMax, setZMax] = useState();
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("items"));
-    if (items) {
-      setItems(items);
-    }
-  }, []);
-  console.log(items);
+  // console.log(planning);
+
   return (
     <div class="hero min-h-screen text-white">
       <div class="hero-content flex-col lg:flex-row-reverse">
@@ -30,12 +23,62 @@ const Projects = () => {
         </div>
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-red-100">
           <div class="card-body">
+            {/* Project planning  */}
+            <h1 className="text-2xl text-start text-black font-bold">
+              Company Plannings
+            </h1>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Project Name</span>
+              </label>
+              <input
+                type="text"
+                value={planning.ProjectName}
+                placeholder="Project Name"
+                class="input input-bordered text-black"
+              />
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Project Description</span>
+              </label>
+              <input
+                type="text"
+                value={planning.ProjectDescription}
+                placeholder="Project Description"
+                class="input input-bordered text-black"
+              />
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Client</span>
+              </label>
+              <input
+                type="text"
+                value={planning.Client}
+                placeholder="Client"
+                class="input input-bordered text-black"
+              />
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Contractor</span>
+              </label>
+              <input
+                type="text"
+                value={planning.Contractor}
+                placeholder="Contractor"
+                class="input input-bordered text-black"
+              />
+            </div>
+            {/* csv data's */}
             <div class="form-control">
               <label class="label">
                 <span class="label-text">File Upload</span>
               </label>
               <div className="file-wrapper">
                 <CSVConvert
+                setCSVData={setCSVData}
                   setXMax={setXMax}
                   setXMin={setXMin}
                   setYMax={setYMax}
@@ -111,9 +154,9 @@ const Projects = () => {
                 class="input input-bordered text-black"
               />
             </div>
-            <div class="form-control mt-6">
+            {/* <div class="form-control mt-6">
               <button class="btn btn-error">Submit</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
