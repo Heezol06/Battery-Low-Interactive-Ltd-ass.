@@ -30,6 +30,9 @@ const Results = ({ xMin, xMax, yMin, yMax, zMin, zMax }) => {
           </tbody>
         </table>
       </div>
+
+      <button className="btn mt-10" onClick={() => window.print()}>PRINT</button>
+
     </div>
   );
 };
