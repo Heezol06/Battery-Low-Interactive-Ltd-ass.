@@ -4,11 +4,7 @@ import { useForm } from "react-hook-form";
 const CompanyPlanning = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) =>{
-    console.log(data.keys);
-    alert(
-      "Are You Sure You Want To Upload It.",
-      localStorage.setItem(data, JSON.stringify(data))
-    );
+    
     }
   return (
     <div>

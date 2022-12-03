@@ -1,18 +1,23 @@
-import React, { useRef, CSSProperties, useState, useEffect } from "react";
-import { useCSVReader } from "react-papaparse";
+import React, { useState, useEffect } from "react";
+// import { useCSVReader } from "react-papaparse";
 import CSVConvert from "./CSVConvert";
 
 const Projects = () => {
+  // console.log(xMin ,xMax, yMin,yMax,zMin,zMax)
   const [items, setItems] = useState([]);
-
-  // const { CSVReader } = useCSVReader();
+  const [xMin, setXMin] = useState();
+  const [xMax, setXMax] = useState();
+  const [yMin, setYMin] = useState();
+  const [yMax, setYMax] = useState();
+  const [zMin, setZMin] = useState();
+  const [zMax, setZMax] = useState();
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("items"));
     if (items) {
       setItems(items);
     }
   }, []);
-console.log(items)
+  console.log(items);
   return (
     <div class="hero min-h-screen text-white">
       <div class="hero-content flex-col lg:flex-row-reverse">
@@ -30,17 +35,25 @@ console.log(items)
                 <span class="label-text">File Upload</span>
               </label>
               <div className="file-wrapper">
-                <CSVConvert></CSVConvert>
+                <CSVConvert
+                  setXMax={setXMax}
+                  setXMin={setXMin}
+                  setYMax={setYMax}
+                  setYMin={setYMin}
+                  setZMax={setZMax}
+                  setZMin={setZMin}
+                ></CSVConvert>
               </div>
             </div>
-            <div class="form-control">
+            <div class="form-control text-black">
               <label class="label">
                 <span class="label-text">max_X</span>
               </label>
               <input
                 type="number"
+                value={xMax}
                 placeholder="max_X"
-                class="input input-bordered"
+                class="input input-bordered text-black"
               />
             </div>
             <div class="form-control">
@@ -50,7 +63,8 @@ console.log(items)
               <input
                 type="number"
                 placeholder="min_X"
-                class="input input-bordered"
+                value={xMin}
+                class="input input-bordered text-black"
               />
             </div>
             <div class="form-control">
@@ -59,8 +73,9 @@ console.log(items)
               </label>
               <input
                 type="number"
+                value={yMax}
                 placeholder="max_Y"
-                class="input input-bordered"
+                class="input input-bordered text-black"
               />
             </div>
             <div class="form-control">
@@ -70,7 +85,8 @@ console.log(items)
               <input
                 type="number"
                 placeholder="min_y"
-                class="input input-bordered"
+                value={yMin}
+                class="input input-bordered text-black"
               />
             </div>
             <div class="form-control">
@@ -79,8 +95,9 @@ console.log(items)
               </label>
               <input
                 type="number"
+                value={zMax}
                 placeholder="max_Z"
-                class="input input-bordered"
+                class="input input-bordered text-black"
               />
             </div>
             <div class="form-control">
@@ -89,8 +106,9 @@ console.log(items)
               </label>
               <input
                 type="number"
+                value={zMin}
                 placeholder="min_Z"
-                class="input input-bordered"
+                class="input input-bordered text-black"
               />
             </div>
             <div class="form-control mt-6">

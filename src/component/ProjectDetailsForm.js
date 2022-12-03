@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import backgroundImg from "../asset/abstract-background-with-red-lines.jpg";
 import CompanyPlanning from "./CompanyPlanning";
 import Projects from "./Projects";
+import Results from "./Results";
 
 const ProjectDetailsForm = () => {
   const [page, setPage] = useState(0);
@@ -11,23 +12,25 @@ const ProjectDetailsForm = () => {
     Client: "",
     Contractor: "",
   });
+
   const FormTitles = ["Sign Up", "Personal Info", "Other"];
   const PageDisplay = () => {
     if (page === 0) {
       return <CompanyPlanning formData={formData} setFormData={setFormData} />;
     } else if (page === 1) {
       return <Projects formData={formData} setFormData={setFormData} />;
+    } else if (page === 2) {
+      return <Results formData={formData} setFormData={setFormData} />;
     }
   };
+
   return (
     <div style={{ backgroundImage: `url(${backgroundImg})` }}>
       <h1 className="text-3xl font-bold text-white">{FormTitles[page]}</h1>
-      <div
+      {/* <div
         style={{ width: page === 0 ? "33.3%" : page == 1 ? "66.6%" : "100%" }}
-      ></div>
-      <div class="hero min-h-screen text-white">
-      {PageDisplay()}
-      </div>
+      ></div> */}
+      <div class="hero min-h-screen text-white">{PageDisplay()}</div>
       <div className="flex mx-10 justify-around py-10">
         <button
           className="btn text-white btn-secondary"

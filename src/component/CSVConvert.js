@@ -1,5 +1,6 @@
 import React from "react";
 import { useCSVReader } from "react-papaparse";
+// import useCSV from "./useCSV";
 const styles = {
   csvReader: {
     display: "flex",
@@ -25,38 +26,41 @@ const styles = {
   },
 };
 
-const CSVConvert = () => {
+const CSVConvert = ({setXMax,setXMin,setYMax,setYMin,setZMax,setZMin}) => {
   const { CSVReader } = useCSVReader();
+  
+  
   return (
     <CSVReader
-      onUploadAccepted={(results: any) => {
-//         const numbers = results.data;
-//         let max = numbers[0]
-//         for (let i = 0; i < numbers.length; i++) {
-//           if (numbers[i]>max) {
-//             max =numbers[i]
-//           }
-          
-//         }
-// console.log(max)
+      onUploadAccepted={(results) => {
+        const arr = results.data;
+        
+        let x = [];
+        let y = [];
+        let z = [];
+        for (let i = 0; i < arr.length; i++) {
+          x.push(arr[i][1]);
+          y.push(arr[i][2]);
+          z.push(arr[i][3]);
+        }
+        x.shift();
+        y.shift();
+        z.shift();
+        x.pop();
+        y.pop();
+        z.pop();
 
-        const er = results.data;
-        const gminmax = er.map((r) => r[1]);
-        console.log(gminmax.shift());
-        console.log(gminmax)
-
-        gminmax.sort(); // Default is lexicographical sort
-        console.log(gminmax.join(", ")); // -15, -37, -5, 15, 37, 5
-
-        gminmax.sort((a, b) => a - b); // Sort numerically, ascending
-        console.log(gminmax.join(", ")); // -37, -15, -5, 5, 15, 37
-
-        const min = gminmax[0];
-        const max = gminmax[gminmax.length - 1];
-        console.log(`Minimum: ${min}, Maximum: ${max}`); // Minimum: -37, Maximum: 37
-
-        console.log();
-        <h1>{results}</h1>;
+        for (let i = 0; i < x.length; i++) {
+          x[i] = parseFloat(x[i]);
+          y[i] = parseFloat(y[i]);
+          z[i] = parseFloat(z[i]);
+        }
+        setXMin(Math.min(...x))
+        setXMax(Math.max(...x))
+        setYMin(Math.min(...y))
+        setYMax(Math.max(...y))
+        setZMin(Math.min(...z))
+        setZMax(Math.max(...z))
         console.log("---------------------------");
       }}
     >
@@ -65,7 +69,7 @@ const CSVConvert = () => {
         acceptedFile,
         ProgressBar,
         getRemoveFileProps,
-      }: any) => (
+      }) => (
         <>
           <div style={styles.csvReader} class="">
             <button type="button" {...getRootProps()} style={styles.browseFile}>
