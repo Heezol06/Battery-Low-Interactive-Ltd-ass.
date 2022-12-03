@@ -26,14 +26,13 @@ const styles = {
   },
 };
 
-const CSVConvert = ({setXMax,setXMin,setYMax,setYMin,setZMax,setZMin, setCSVData}) => {
+const CSVConvert = ({setXMax,setXMin,setYMax,setYMin,setZMax,setZMin}) => {
   const { CSVReader } = useCSVReader();
   
   
   return (
     <CSVReader
       onUploadAccepted={(results) => {
-        setCSVData(results.data)
         const arr = results.data;
         
         let x = [];
@@ -62,7 +61,6 @@ const CSVConvert = ({setXMax,setXMin,setYMax,setYMin,setZMax,setZMin, setCSVData
         setYMax(Math.max(...y))
         setZMin(Math.min(...z))
         setZMax(Math.max(...z))
-        console.log("---------------------------");
       }}
     >
       {({

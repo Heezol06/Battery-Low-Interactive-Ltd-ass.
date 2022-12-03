@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 // import { useCSVReader } from "react-papaparse";
 import CSVConvert from "./CSVConvert";
 
-const Projects = ({ planning, setCSVData }) => {
-  const [xMin, setXMin] = useState();
-  const [xMax, setXMax] = useState();
-  const [yMin, setYMin] = useState();
-  const [yMax, setYMax] = useState();
-  const [zMin, setZMin] = useState();
-  const [zMax, setZMax] = useState();
+const Projects = ({
+  planning,
+  xMin,
+  xMax,
+  yMin,
+  yMax,
+  zMin,
+  zMax,
+  setXMin,
+  setXMax,
+  setYMin,
+  setYMax,
+  setZMin,
+  setZMax,
+  setPage,
+}) => {
   // console.log(planning);
 
   return (
@@ -78,7 +87,6 @@ const Projects = ({ planning, setCSVData }) => {
               </label>
               <div className="file-wrapper">
                 <CSVConvert
-                setCSVData={setCSVData}
                   setXMax={setXMax}
                   setXMin={setXMin}
                   setYMax={setYMax}

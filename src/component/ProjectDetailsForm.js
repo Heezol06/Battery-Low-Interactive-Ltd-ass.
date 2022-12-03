@@ -5,9 +5,14 @@ import Projects from "./Projects";
 import Results from "./Results";
 
 const ProjectDetailsForm = () => {
+  const [xMin, setXMin] = useState();
+  const [xMax, setXMax] = useState();
+  const [yMin, setYMin] = useState();
+  const [yMax, setYMax] = useState();
+  const [zMin, setZMin] = useState();
+  const [zMax, setZMax] = useState();
   const [page, setPage] = useState(0);
-  const [planning, setPlanning] = useState({})
-  const [CSVData, setCSVData] = useState([])
+  const [planning, setPlanning] = useState({});
   const [formData, setFormData] = useState({
     ProjectName: "",
     ProjectDescription: "",
@@ -18,11 +23,46 @@ const ProjectDetailsForm = () => {
   const FormTitles = ["Company Planning", "CSV Info", "Results"];
   const PageDisplay = () => {
     if (page === 0) {
-      return <CompanyPlanning setPlanning={setPlanning} formData={formData} setFormData={setFormData} />;
+      return (
+        <CompanyPlanning
+          setPlanning={setPlanning}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      );
     } else if (page === 1) {
-      return <Projects setCSVData={setCSVData} planning={planning} formData={formData} setFormData={setFormData} />;
+      return (
+        <Projects
+          xMin={xMin}
+          xMax={xMax}
+          yMin={yMin}
+          yMax={yMax}
+          zMin={zMin}
+          zMax={zMax}
+          setXMax={setXMax}
+          setXMin={setXMin}
+          setYMax={setYMax}
+          setYMin={setYMin}
+          setZMax={setZMax}
+          setZMin={setZMin}
+          planning={planning}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      );
     } else if (page === 2) {
-      return <Results CSVData={CSVData} formData={formData} setFormData={setFormData} />;
+      return (
+        <Results
+          xMin={xMin}
+          xMax={xMax}
+          yMin={yMin}
+          yMax={yMax}
+          zMin={zMin}
+          zMax={zMax}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      );
     }
   };
 

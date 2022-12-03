@@ -1,47 +1,37 @@
-import React from 'react';
+import React from "react";
 
-const Results = ({CSVData}) => {
-    console.log(CSVData)
-    return (
-        <div>
-            <div className="overflow-x-auto">
-  <table className="table w-full text-black">
-    <thead>
-      <tr>
-        <th></th>
-        <th className='text-lg'>KP</th>
-        <th className='text-lg'>X</th>
-        <th className='text-lg'>Y</th>
-        <th className='text-lg'>Z</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-        <td>Blue</td>
-      </tr>
-      <tr>
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-        <td>Purple</td>
-      </tr>
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-        </div>
-    );
+const Results = ({ xMin, xMax, yMin, yMax, zMin, zMax }) => {
+  console.log(xMin, xMax, yMin, yMax, zMin, zMax);
+  return (
+    <div>
+      <div className="overflow-x-auto">
+        <table className="table w-full text-black">
+          <thead>
+            <tr>
+              <th className="text-lg capitalize p-8">KP</th>
+              <th className="text-lg capitalize p-8">Minimum X</th>
+              <th className="text-lg capitalize p-8">Maximum X</th>
+              <th className="text-lg capitalize p-8">Minimum Y</th>
+              <th className="text-lg capitalize p-8">Maximum Y</th>
+              <th className="text-lg capitalize p-8">Minimum Z</th>
+              <th className="text-lg capitalize p-8">Maximum Z</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th className="p-8">1</th>
+              <td className="p-8">{xMin}</td>
+              <td className="p-8">{xMax}</td>
+              <td className="p-8">{yMin}</td>
+              <td className="p-8">{yMax}</td>
+              <td className="p-8">{zMin}</td>
+              <td className="p-8">{zMax}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default Results;
