@@ -1,12 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-import ProjectDetailsForm from './component/ProjectDetailsForm';
-import CSVChart from './component/CSVChart';
+import "./App.css";
+import ProjectDetailsForm from "./component/ProjectDetailsForm";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Results from "./component/Results";
 
 function App() {
   return (
     <div className="App">
-      <ProjectDetailsForm></ProjectDetailsForm>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<ProjectDetailsForm />} />
+          <Route path="/result" element={<Results />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
