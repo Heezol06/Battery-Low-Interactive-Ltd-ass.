@@ -42,7 +42,8 @@ const CSVConvert = () => {
 
         const er = results.data;
         const gminmax = er.map((r) => r[1]);
-        console.log(gminmax);
+        console.log(gminmax.shift());
+        console.log(gminmax)
 
         gminmax.sort(); // Default is lexicographical sort
         console.log(gminmax.join(", ")); // -15, -37, -5, 15, 37, 5
