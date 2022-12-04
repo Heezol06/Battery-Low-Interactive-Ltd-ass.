@@ -12,52 +12,34 @@ import { curveCardinal } from "d3-shape";
 const Chart = ({ CSVData }) => {
 //   const x = CSVData.map((d) => d[0]);
 //   const y = CSVData.map((d) => d[1]);
-//   console.log(CSVData)
-  
-let x = [];
-let y = [];
-let z = [];
-for (let i = 0; i < CSVData.length; i++) {
-  x.push(CSVData[i][1]);
-  y.push(CSVData[i][2]);
-  z.push(CSVData[i][3]);
-}
-x.shift();
-y.shift();
-z.shift();
-x.pop();
-y.pop();
-z.pop();
+let kp = [];
+  let x = [];
+  for (let i = 0; i < CSVData.length; i++) {
+    kp.push(CSVData[i][0]);
+    x.push(CSVData[i][1]);
+  }
+  kp.shift();
+  kp.pop();
+  x.shift();
+  x.pop();
+  for (let i = 0; i < kp.length; i++) {
+    kp[i] = parseFloat(kp[i]);
+    x[i] = parseFloat(x[i]);
+  }
 
-for (let i = 0; i < x.length; i++) {
-  x[i] = parseFloat(x[i]);
-  y[i] = parseFloat(y[i]);
-  z[i] = parseFloat(z[i]);
-}
-  console.log(x,y,z)
-
-  const data = [
-    {
-      name: "kp",
-      uv: 4,
-      pv:10
-    },
-    {
-      name: "x",
-      uv: 10,
-    },
-    {
-      name: "y",
-      uv: 1,
-    },
-  ];
+  const data = kp.map((z, i) => {
+    return { name: kp[i], uv: x[i] };
+  });
   const cardinal = curveCardinal.tension(0.2);
 
   return (
     <div>
+      <h1 className="text-2xl">
+        CSV File Data Chart
+      </h1>
       <AreaChart
-        width={500}
-        height={400}
+        width={1500}
+        height={600}
         data={data}
         margin={{
           top: 10,
@@ -66,15 +48,15 @@ for (let i = 0; i < x.length; i++) {
           bottom: 0,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 5" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Area
           type="monotone"
           dataKey="uv"
-          stroke="#8884d8"
-          fill="#8884d8"
+          stroke="F2E5E5"
+          fill="F2E5E5"
           fillOpacity={0.3}
         />
         <Area
@@ -85,10 +67,6 @@ for (let i = 0; i < x.length; i++) {
           fillOpacity={0.3}
         />
       </AreaChart>
-      <h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
-        eligendi!
-      </h1>
     </div>
   );
 };

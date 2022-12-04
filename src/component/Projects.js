@@ -1,8 +1,10 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import CSVConvert from "./CSVConvert";
 
 const Projects = ({
   planning,
+  setPlanningProject,
   xMin,
   xMax,
   yMin,
@@ -18,6 +20,23 @@ const Projects = ({
   setCSVData
 }) => {
   // console.log(planning);
+  const { register, handleSubmit } = useForm();
+  
+  const onSubmit = (data) =>{
+    // send data to the server 
+    fetch("http://localhost:5000/planning",{
+      method: "POST",
+      headers:{
+        "content-Type": "application/json"
+      }, 
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => {
+      setPlanningProject(data)
+    })
+    // console.log(data);
+    }
 
   return (
     <div class="hero min-h-screen text-white">
@@ -30,7 +49,7 @@ const Projects = ({
           </p>
         </div>
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-red-100">
-          <div class="card-body">
+          <form class="card-body" onSubmit={handleSubmit(onSubmit)}>
             {/* Project planning  */}
             <h1 className="text-2xl text-start text-black font-bold">
               Company Plannings
@@ -41,6 +60,8 @@ const Projects = ({
               </label>
               <input
                 type="text"
+                name="ProjectName"
+                {...register("ProjectName")}
                 value={planning.ProjectName}
                 placeholder="Project Name"
                 class="input input-bordered text-black"
@@ -52,6 +73,8 @@ const Projects = ({
               </label>
               <input
                 type="text"
+                name="ProjectDescription"
+                {...register("ProjectDescription")}
                 value={planning.ProjectDescription}
                 placeholder="Project Description"
                 class="input input-bordered text-black"
@@ -63,6 +86,8 @@ const Projects = ({
               </label>
               <input
                 type="text"
+                name="Client"
+                {...register("Client")}
                 value={planning.Client}
                 placeholder="Client"
                 class="input input-bordered text-black"
@@ -74,11 +99,16 @@ const Projects = ({
               </label>
               <input
                 type="text"
+                name="Contractor"
+                {...register("Contractor")}
                 value={planning.Contractor}
                 placeholder="Contractor"
                 class="input input-bordered text-black"
               />
             </div>
+
+
+
             {/* csv data's */}
             <div class="form-control">
               <label class="label">
@@ -102,6 +132,7 @@ const Projects = ({
               </label>
               <input
                 type="number"
+                {...register("max_X")}
                 value={xMax}
                 placeholder="max_X"
                 class="input input-bordered text-black"
@@ -113,6 +144,7 @@ const Projects = ({
               </label>
               <input
                 type="number"
+                {...register("min_X")}
                 placeholder="min_X"
                 value={xMin}
                 class="input input-bordered text-black"
@@ -124,6 +156,7 @@ const Projects = ({
               </label>
               <input
                 type="number"
+                {...register("max_Y")}
                 value={yMax}
                 placeholder="max_Y"
                 class="input input-bordered text-black"
@@ -135,6 +168,7 @@ const Projects = ({
               </label>
               <input
                 type="number"
+                {...register("min_y")}
                 placeholder="min_y"
                 value={yMin}
                 class="input input-bordered text-black"
@@ -146,6 +180,7 @@ const Projects = ({
               </label>
               <input
                 type="number"
+                {...register("max_Z")}
                 value={zMax}
                 placeholder="max_Z"
                 class="input input-bordered text-black"
@@ -157,15 +192,21 @@ const Projects = ({
               </label>
               <input
                 type="number"
+                {...register("min_Z")}
                 value={zMin}
                 placeholder="min_Z"
                 class="input input-bordered text-black"
               />
             </div>
-            {/* <div class="form-control mt-6">
-              <button class="btn btn-error">Submit</button>
-            </div> */}
-          </div>
+            <div class="form-control mt-6">
+            <input
+                type="submit"
+                className="btn btn-outline bg-red-400 text-white"
+                value="Submit"
+              />
+              {/* <button class="btn btn-error">Submit</button> */}
+            </div>
+          </form>
         </div>
       </div>
     </div>

@@ -6,17 +6,17 @@ import Projects from "./Projects";
 import Results from "./Results";
 
 const ProjectDetailsForm = () => {
-  const [xMin, setXMin] = useState();
-  const [xMax, setXMax] = useState();
-  const [yMin, setYMin] = useState();
-  const [yMax, setYMax] = useState();
-  const [zMin, setZMin] = useState();
-  const [zMax, setZMax] = useState();
+  const [xMin, setXMin] = useState(" ");
+  const [xMax, setXMax] = useState(" ");
+  const [yMin, setYMin] = useState(" ");
+  const [yMax, setYMax] = useState(" ");
+  const [zMin, setZMin] = useState(" ");
+  const [zMax, setZMax] = useState(" ");
   const [page, setPage] = useState(0);
   const [planning, setPlanning] = useState({});
   const [CSVData, setCSVData] = useState([])
 
-  
+
   const FormTitles = ["Company Planning", "CSV Info", "Results", "Chart"];
   const PageDisplay = () => {
     if (page === 0) {
@@ -47,13 +47,6 @@ const ProjectDetailsForm = () => {
     } else if (page === 2) {
       return (
         <Results
-        planning={planning}
-          xMin={xMin}
-          xMax={xMax}
-          yMin={yMin}
-          yMax={yMax}
-          zMin={zMin}
-          zMax={zMax}
         />
       );
     }

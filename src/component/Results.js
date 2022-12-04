@@ -1,44 +1,38 @@
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 
-const Results = ({ xMin, xMax, yMin, yMax, zMin, zMax, planning }) => {
+const Results = () => {
+  const [results, setResults] = useState()
   useEffect(()=>{
     fetch("http://localhost:5000/planning")
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => setResults(data))
   },[])
+  console.log(results)
   return (
     <div>
-      <div className="overflow-x-auto">
-        <table className="table w-full text-black">
-          <thead>
-            <tr>
-              <th className="text-lg capitalize p-8">Project Description</th>
-              <th className="text-lg capitalize p-8">Client</th>
-              <th className="text-lg capitalize p-8">Contractor</th>
-              <th className="text-lg capitalize p-8">Minimum X</th>
-              <th className="text-lg capitalize p-8">Maximum X</th>
-              <th className="text-lg capitalize p-8">Minimum Y</th>
-              <th className="text-lg capitalize p-8">Maximum Y</th>
-              <th className="text-lg capitalize p-8">Minimum Z</th>
-              <th className="text-lg capitalize p-8">Maximum Z</th>
-            </tr>
-          </thead>
+      {/* {results.length} */}
+      <table className="table w-full text-black">
+      {results?.map((result) =>(
+        <div className="overflow-x-auto">
           <tbody>
             <tr>
-              <th className="p-8">{planning.ProjectDescription}</th>
-              <th className="p-8">{planning.Client}</th>
-              <th className="p-8">{planning.Contractor}</th>
-              <td className="p-8">{xMin}</td>
-              <td className="p-8">{xMax}</td>
-              <td className="p-8">{yMin}</td>
-              <td className="p-8">{yMax}</td>
-              <td className="p-8">{zMin}</td>
-              <td className="p-8">{zMax}</td>
+              <th className="p-8">{result.ProjectDescription}</th>
+              <th className="p-8">{result.Client}</th>
+              <th className="p-8">{result.Contractor}</th>
+              <td className="p-8">{result.min_X}</td>
+              <td className="p-8">{result.max_X}</td>
+              <td className="p-8">{result.min_Y}</td>
+              <td className="p-8">{result.max_Y}</td>
+              <td className="p-8">{result.min_Z}</td>
+              <td className="p-8">{result.max_Z}</td>
             </tr>
           </tbody>
-        </table>
-      </div>
+          </div>
+      ))}
+          
+          </table>
 
       <button className="btn mt-10" onClick={() => window.print()}>PRINT</button>
 

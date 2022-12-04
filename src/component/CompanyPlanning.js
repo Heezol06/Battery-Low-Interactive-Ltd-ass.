@@ -18,6 +18,7 @@ const CompanyPlanning = ({setPlanning}) => {
     //   console.log("success",data);
     // })
     setPlanning(data)
+    console.log(data)
     }
   return (
     <div>
