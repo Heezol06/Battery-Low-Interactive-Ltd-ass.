@@ -1,5 +1,4 @@
 import React from "react";
-// import { useCSVReader } from "react-papaparse";
 import CSVConvert from "./CSVConvert";
 
 const Projects = ({
@@ -16,7 +15,7 @@ const Projects = ({
   setYMax,
   setZMin,
   setZMax,
-  setPage,
+  setCSVData
 }) => {
   // console.log(planning);
 
@@ -93,6 +92,7 @@ const Projects = ({
                   setYMin={setYMin}
                   setZMax={setZMax}
                   setZMin={setZMin}
+                  setCSVData={setCSVData}
                 ></CSVConvert>
               </div>
             </div>

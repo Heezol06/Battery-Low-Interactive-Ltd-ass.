@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
 const CompanyPlanning = ({setPlanning}) => {
   const { register, handleSubmit } = useForm();
   
   const onSubmit = (data) =>{
+    // send data to the server 
+    // fetch("http://localhost:5000/planning",{
+    //   method: "POST",
+    //   headers:{
+    //     "content-Type": "application/json"
+    //   }, 
+    //   body: JSON.stringify(data)
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //   console.log("success",data);
+    // })
     setPlanning(data)
     }
   return (

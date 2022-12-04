@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import backgroundImg from "../asset/abstract-background-with-red-lines.jpg";
+import Chart from "./Chart";
 import CompanyPlanning from "./CompanyPlanning";
 import Projects from "./Projects";
 import Results from "./Results";
@@ -13,21 +14,15 @@ const ProjectDetailsForm = () => {
   const [zMax, setZMax] = useState();
   const [page, setPage] = useState(0);
   const [planning, setPlanning] = useState({});
-  const [formData, setFormData] = useState({
-    ProjectName: "",
-    ProjectDescription: "",
-    Client: "",
-    Contractor: "",
-  });
+  const [CSVData, setCSVData] = useState([])
 
-  const FormTitles = ["Company Planning", "CSV Info", "Results"];
+  
+  const FormTitles = ["Company Planning", "CSV Info", "Results", "Chart"];
   const PageDisplay = () => {
     if (page === 0) {
       return (
         <CompanyPlanning
           setPlanning={setPlanning}
-          formData={formData}
-          setFormData={setFormData}
         />
       );
     } else if (page === 1) {
@@ -46,21 +41,26 @@ const ProjectDetailsForm = () => {
           setZMax={setZMax}
           setZMin={setZMin}
           planning={planning}
-          formData={formData}
-          setFormData={setFormData}
+          setCSVData={setCSVData}
         />
       );
     } else if (page === 2) {
       return (
         <Results
+        planning={planning}
           xMin={xMin}
           xMax={xMax}
           yMin={yMin}
           yMax={yMax}
           zMin={zMin}
           zMax={zMax}
-          formData={formData}
-          setFormData={setFormData}
+        />
+      );
+    }
+    else if (page === 3) {
+      return (
+        <Chart
+        CSVData={CSVData}
         />
       );
     }
