@@ -9,7 +9,7 @@ const Results = () => {
     .then(res => res.json())
     .then(data => setResults(data))
   },[])
-  console.log(results)
+  // console.log("results",results)
   return (
     <div>
       {/* {results.length} */}
@@ -18,15 +18,15 @@ const Results = () => {
         <div className="overflow-x-auto">
           <tbody>
             <tr>
-              <th className="p-8">{result.ProjectDescription}</th>
-              <th className="p-8">{result.Client}</th>
-              <th className="p-8">{result.Contractor}</th>
-              <td className="p-8">{result.min_X}</td>
-              <td className="p-8">{result.max_X}</td>
-              <td className="p-8">{result.min_Y}</td>
-              <td className="p-8">{result.max_Y}</td>
-              <td className="p-8">{result.min_Z}</td>
-              <td className="p-8">{result.max_Z}</td>
+              <th className="p-8">{result?.ProjectDescription}</th>
+              <th className="p-8">{result?.Client}</th>
+              <th className="p-8">{result?.Contractor}</th>
+              <td className="p-8">{result?.xMax}</td>
+              <td className="p-8">{result?.xMin}</td>
+              <td className="p-8">{result?.yMax}</td>
+              <td className="p-8">{result?.yMin}</td>
+              <td className="p-8">{result?.zMax}</td>
+              <td className="p-8">{result?.zMin}</td>
             </tr>
           </tbody>
           </div>

@@ -6,14 +6,9 @@ import Projects from "./Projects";
 import Results from "./Results";
 
 const ProjectDetailsForm = () => {
-  const [xMin, setXMin] = useState(" ");
-  const [xMax, setXMax] = useState(" ");
-  const [yMin, setYMin] = useState(" ");
-  const [yMax, setYMax] = useState(" ");
-  const [zMin, setZMin] = useState(" ");
-  const [zMax, setZMax] = useState(" ");
   const [page, setPage] = useState(0);
   const [planning, setPlanning] = useState({});
+  const [planingProject,setPlanningProject] = useState({})
   const [CSVData, setCSVData] = useState([])
 
 
@@ -28,19 +23,8 @@ const ProjectDetailsForm = () => {
     } else if (page === 1) {
       return (
         <Projects
-          xMin={xMin}
-          xMax={xMax}
-          yMin={yMin}
-          yMax={yMax}
-          zMin={zMin}
-          zMax={zMax}
-          setXMax={setXMax}
-          setXMin={setXMin}
-          setYMax={setYMax}
-          setYMin={setYMin}
-          setZMax={setZMax}
-          setZMin={setZMin}
           planning={planning}
+          setPlanningProject={setPlanningProject}
           setCSVData={setCSVData}
         />
       );
@@ -58,14 +42,11 @@ const ProjectDetailsForm = () => {
       );
     }
   };
-
+// console.log(planingProject)
   return (
     <div style={{ backgroundImage: `url(${backgroundImg})` }}>
       <h1 className="text-3xl font-bold text-white">{FormTitles[page]}</h1>
-      {/* <div
-        style={{ width: page === 0 ? "33.3%" : page == 1 ? "66.6%" : "100%" }}
-      ></div> */}
-      <div class="hero min-h-screen text-white">{PageDisplay()}</div>
+      <div className="hero min-h-screen text-white">{PageDisplay()}</div>
       <div className="flex mx-10 justify-around py-10">
         <button
           className="btn text-white btn-secondary"

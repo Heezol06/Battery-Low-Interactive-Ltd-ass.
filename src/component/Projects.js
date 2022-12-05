@@ -1,29 +1,27 @@
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import CSVConvert from "./CSVConvert";
 
 const Projects = ({
   planning,
-  setPlanningProject,
-  xMin,
-  xMax,
-  yMin,
-  yMax,
-  zMin,
-  zMax,
-  setXMin,
-  setXMax,
-  setYMin,
-  setYMax,
-  setZMin,
-  setZMax,
-  setCSVData
+  setCSVData,
+  setPlanningProject
 }) => {
   // console.log(planning);
   const { register, handleSubmit } = useForm();
+  const [xMin, setXMin] = useState();
+const [xMax, setXMax] = useState();
+const [yMin, setYMin] = useState();
+const [yMax, setYMax] = useState();
+const [zMin, setZMin] = useState();
+const [zMax, setZMax] = useState();
   
-  const onSubmit = (data) =>{
-    // send data to the server 
+
+
+  const onSubmit = () =>{
+    // send data to the server ]
+    const data = {...planning,xMin:xMin,xMax:xMax,yMax:yMax,yMin:yMin,zMin:zMin,zMax:zMax}
     fetch("https://battery-low.onrender.com/planning",{
       method: "POST",
       headers:{
@@ -34,8 +32,10 @@ const Projects = ({
     .then(res => res.json())
     .then(data => {
       setPlanningProject(data)
+      console.log("post data");
     })
-    // console.log(data);
+    // console.log(data)
+    //  console.log({...planning,xMin:xMin,xMax:xMax,yMax:yMax,yMin:yMin,zMin:zMin,zMax:zMax});
     }
 
   return (
@@ -132,7 +132,7 @@ const Projects = ({
               </label>
               <input
                 type="number"
-                {...register("max_X")}
+                {...register("xMax")}
                 value={xMax}
                 placeholder="max_X"
                 class="input input-bordered text-black"

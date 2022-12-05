@@ -71,7 +71,7 @@ const CSVConvert = ({setXMax,setXMin,setYMax,setYMin,setZMax,setZMin,setCSVData}
         getRemoveFileProps,
       }) => (
         <>
-          <div style={styles.csvReader} class="">
+          <div style={styles.csvReader} className="">
             <button type="button" {...getRootProps()} style={styles.browseFile}>
               Browse file
             </button>
