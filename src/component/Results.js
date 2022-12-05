@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const Results = () => {
   const [results, setResults] = useState()
   useEffect(()=>{
-    fetch("http://localhost:5000/planning")
+    fetch("https://battery-low.onrender.com/planning")
     .then(res => res.json())
     .then(data => setResults(data))
   },[])

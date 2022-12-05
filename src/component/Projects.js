@@ -24,7 +24,7 @@ const Projects = ({
   
   const onSubmit = (data) =>{
     // send data to the server 
-    fetch("http://localhost:5000/planning",{
+    fetch("https://battery-low.onrender.com/planning",{
       method: "POST",
       headers:{
         "content-Type": "application/json"
